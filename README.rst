@@ -1,7 +1,7 @@
 wagtail-azure-cdn
 =================
 
-This is an Azure CDN backend for Wagtail's
+An Azure CDN backend for Wagtail's
 `front-end cache invalidator <https://docs.wagtail.io/en/latest/reference/contrib/frontendcache.html>`_.
 
 This module requires `azure-mgmt-cdn
@@ -11,7 +11,7 @@ This module requires `azure-mgmt-cdn
 Configuration
 -------------
 
-These are example settings:
+Add the following settings to your Wagtail project.
 
 .. code:: python
 

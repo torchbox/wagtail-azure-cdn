@@ -1,11 +1,18 @@
 from setuptools import setup, find_packages
+from os import path
 
 from wagtail_azure_cdn import __version__
+
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, "README.rst"), encoding="utf-8") as f:
+    long_description = f.read()
 
 
 setup(
     name="wagtail-azure-cdn",
     description="Use Azure CDN with Wagtail",
+    long_description=long_description,
     license="MIT",
     include_package_data=True,
     author="Tomasz Knapik",
