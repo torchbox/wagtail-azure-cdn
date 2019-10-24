@@ -13,6 +13,7 @@ setup(
     name="wagtail-azure-cdn",
     description="Use Azure CDN with Wagtail",
     long_description=long_description,
+    long_description_content_type="text/x-rst",
     license="MIT",
     include_package_data=True,
     author="Tomasz Knapik",
