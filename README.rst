@@ -8,6 +8,14 @@ This module requires `azure-mgmt-cdn
 <https://pypi.org/project/azure-mgmt-cdn/>`_ as minimum to work properly.
 
 
+Installation
+------------
+
+.. code:: shell
+
+   pip install wagtail-azure-cdn
+
+
 Configuration
 -------------
 
