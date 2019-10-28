@@ -95,9 +95,7 @@ CACHES = {
     }
 }
 
-PASSWORD_HASHERS = (
-    "django.contrib.auth.hashers.MD5PasswordHasher",  # don't use the intentionally slow default password hasher
-)
+PASSWORD_HASHERS = ("django.contrib.auth.hashers.MD5PasswordHasher",)
 
 ALLOWED_HOSTS = ["localhost", "testserver"]
 
