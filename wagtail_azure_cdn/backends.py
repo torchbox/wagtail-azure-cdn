@@ -58,6 +58,7 @@ class AzureCdnBackend(BaseBackend):
         for url in urls:
             parse_result = urlparse(url)
             hostname = parse_result.hostname
+            # TODO: Add query params to the path as well.
             path = parse_result.path or "/"
             paths_by_host[hostname].append(path)
         return paths_by_host

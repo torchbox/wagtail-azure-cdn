@@ -21,6 +21,7 @@ setup(
     version="0.1a0",
     packages=find_packages(),
     install_requires=["azure-mgmt-cdn", "wagtail"],
+    extras_require={"testing": ["flake8", "black", "isort", "faker"]},
     python_requires=">=3.6",
     url="https://github.com/tm-kn/wagtail-azure-cdn/",
     classifiers=[
