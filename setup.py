@@ -18,7 +18,7 @@ setup(
     include_package_data=True,
     author="Tomasz Knapik",
     author_email="hi@tmkn.org",
-    version="0.1a0",
+    version=__version__,
     packages=find_packages(),
     install_requires=["azure-mgmt-cdn", "wagtail"],
     extras_require={"testing": ["flake8", "black", "isort", "faker"]},
