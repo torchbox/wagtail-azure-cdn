@@ -54,13 +54,21 @@ class AzureCdnBackend(BaseBackend):
                     )
 
     def _filter_urls_by_hostname(self, urls: Sequence[str]) -> Dict[str, List[str]]:
+        """
+        Return a dict with hostname as its keys and list of paths as its values.
+        """
         paths_by_host = defaultdict(list)  # type: Dict[str, List[str]]
         for url in urls:
             parse_result = urlparse(url)
             hostname = parse_result.hostname
-            # TODO: Add query params to the path as well.
-            path = parse_result.path or "/"
-            paths_by_host[hostname].append(path)
+            final_path = "/"
+            if parse_result.path:
+                final_path = parse_result.path
+            if parse_result.params:
+                final_path = f"{final_path};{parse_result.params}"
+            if parse_result.query:
+                final_path = f"{final_path}?{parse_result.query}"
+            paths_by_host[hostname].append(final_path)
         return paths_by_host
 
     def _get_client_for_hostname(self, hostname: str):
