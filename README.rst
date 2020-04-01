@@ -97,3 +97,20 @@ E.g. you can do this:
             },
         },
     }
+
+Using X-Host header
+~~~~~~~~~~~~~~~~~~~
+
+Verizon CDN uses X-Host header. To use it in Django, please add the following to the
+Django settings.
+
+.. code:: python
+
+   MIDDLEWARE = [
+       "wagtail_azure_cdn.middleware.use_x_host_header",
+       # ...
+   ]
+
+   USE_X_FORWARDED_HOST = True
+
+

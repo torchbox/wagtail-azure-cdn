@@ -99,3 +99,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Editors
+.vim
