@@ -151,7 +151,7 @@ Add the following settings to your Wagtail project.
 Multi-site configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The multi-site configuration works the same for the Front Door, just use `SITES`.
+The multi-site configuration works the same for the Front Door, just use ``SITES``.
 
 
 .. code:: python
