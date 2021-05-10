@@ -100,8 +100,8 @@ class AzureFrontDoorBackend(AzureBaseBackend):
         }
 
     def _purge_content(self, hostname: str, paths: Sequence[str]) -> None:
-        from msrest.exceptions import HttpOperationError
         from azure.mgmt.frontdoor.models import PurgeParameters
+        from msrest.exceptions import HttpOperationError
 
         client = self._get_client_for_hostname(hostname)
         azure_resource_group_name = self._get_setting_for_hostname(
@@ -158,8 +158,8 @@ class AzureCdnBackend(AzureBaseBackend):
         )
 
     def _purge_content(self, hostname: str, paths: Sequence[str]) -> None:
-        from msrest.exceptions import HttpOperationError
         from azure.mgmt.cdn.models import PurgeParameters
+        from msrest.exceptions import HttpOperationError
 
         client = self._get_client_for_hostname(hostname)
         azure_resource_group_name = self._get_setting_for_hostname(
