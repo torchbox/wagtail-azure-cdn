@@ -23,8 +23,8 @@ setup(
     install_requires=["wagtail"],
     extras_require={
         "testing": ["flake8", "black", "isort", "faker"],
-        "cdn": ["azure-mgmt-cdn"],
-        "frontdoor": ["azure-mgmt-frontdoor"],
+        "cdn": ["azure-mgmt-cdn>=1,<2"],
+        "frontdoor": ["azure-mgmt-frontdoor>=1,<2"],
     },
     python_requires=">=3.6",
     url="https://github.com/tm-kn/wagtail-azure-cdn/",

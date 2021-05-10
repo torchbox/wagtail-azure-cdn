@@ -3,23 +3,25 @@ cache: pip
 
 matrix:
   include:
-   - env: TOXENV=py38-dj22-wagtail29
+   - env: TOXENV=py38-dj22-wagtail211
      python: 3.8
-   - env: TOXENV=py38-dj30-wagtail29
-     python: 3.8
+   - env: TOXENV=py39-dj22-wagtail212
+     python: 3.9
+   - env: TOXENV=py39-dj31-wagtail212
+     python: 3.9
    - env: TOXENV=flake8
-     python: 3.7
+     python: 3.9
    - env: TOXENV=black
-     python: 3.7
+     python: 3.9
    - env: TOXENV=isort
-     python: 3.7
-   - env: TOXENV=py37-djmaster-wagtailmaster
-     python: 3.7
-   - env: TOXENV=py38-djmaster-wagtailmaster
-     python: 3.8
+     python: 3.9
+   - env: TOXENV=py39-dj31-wagtailmain
+     python: 3.9
+   - env: TOXENV=py39-djmain-wagtailmain
+     python: 3.9
   allow_failures:
-    - env: TOXENV=py37-djmaster-wagtailmaster
-    - env: TOXENV=py38-djmaster-wagtailmaster
+    - env: TOXENV=py39-dj31-wagtailmain
+    - env: TOXENV=py39-djmain-wagtailmain
 
 # Run the tests
 script:

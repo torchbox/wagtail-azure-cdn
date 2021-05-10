@@ -83,7 +83,7 @@ class AzureFrontDoorBackend(AzureBaseBackend):
             hostname, "frontdoor_service_url", raise_exception=False
         )
         return FrontDoorManagementClient(
-            credentials=azure_credentials()
+            credential=azure_credentials()
             if callable(azure_credentials)
             else azure_credentials,
             subscription_id=azure_subscription_id,
@@ -97,10 +97,10 @@ class AzureFrontDoorBackend(AzureBaseBackend):
             "FRONTDOOR_NAME": "frontdoor_name",
             "FRONTDOOR_SERVICE_URL": "frontdoor_service_url",
             "CREDENTIALS": "credentials",
-            "CUSTOM_HEADERS": "custom_headers",
         }
 
     def _purge_content(self, hostname: str, paths: Sequence[str]) -> None:
+        from azure.mgmt.frontdoor.models import PurgeParameters
         from msrest.exceptions import HttpOperationError
 
         client = self._get_client_for_hostname(hostname)
@@ -108,15 +108,11 @@ class AzureFrontDoorBackend(AzureBaseBackend):
             hostname, "resource_group_name"
         )
         frontdoor_name = self._get_setting_for_hostname(hostname, "frontdoor_name")
-        custom_headers = self._get_setting_for_hostname(
-            hostname, "custom_headers", raise_exception=False
-        )
         try:
-            client.endpoints.purge_content(
+            client.endpoints.begin_purge_content(
                 resource_group_name=azure_resource_group_name,
                 front_door_name=frontdoor_name,
-                custom_headers=custom_headers,
-                content_paths=paths,
+                content_file_paths=PurgeParameters(content_paths=paths),
             )
         except HttpOperationError:
             logger.exception("Error purging content from Azure Front Door: %r.", paths)
@@ -141,7 +137,6 @@ class AzureCdnBackend(AzureBaseBackend):
             "CDN_ENDPOINT_NAME": "cdn_endpoint_name",
             "CDN_SERVICE_URL": "cdn_service_url",
             "CREDENTIALS": "credentials",
-            "CUSTOM_HEADERS": "custom_headers",
         }
 
     def _get_client_for_hostname(self, hostname: str):
@@ -155,7 +150,7 @@ class AzureCdnBackend(AzureBaseBackend):
             hostname, "cdn_service_url", raise_exception=False
         )
         return CdnManagementClient(
-            credentials=azure_credentials()
+            credential=azure_credentials()
             if callable(azure_credentials)
             else azure_credentials,
             subscription_id=azure_subscription_id,
@@ -163,6 +158,7 @@ class AzureCdnBackend(AzureBaseBackend):
         )
 
     def _purge_content(self, hostname: str, paths: Sequence[str]) -> None:
+        from azure.mgmt.cdn.models import PurgeParameters
         from msrest.exceptions import HttpOperationError
 
         client = self._get_client_for_hostname(hostname)
@@ -175,16 +171,12 @@ class AzureCdnBackend(AzureBaseBackend):
         azure_cdn_endpoint_name = self._get_setting_for_hostname(
             hostname, "cdn_endpoint_name"
         )
-        custom_headers = self._get_setting_for_hostname(
-            hostname, "custom_headers", raise_exception=False
-        )
         try:
-            client.endpoints.purge_content(
+            client.endpoints.begin_purge_content(
                 resource_group_name=azure_resource_group_name,
                 profile_name=azure_cdn_profile_name,
                 endpoint_name=azure_cdn_endpoint_name,
-                content_paths=paths,
-                custom_headers=custom_headers,
+                content_file_paths=PurgeParameters(content_paths=paths),
             )
         except HttpOperationError:
             logger.exception("Error purging content from Azure CDN: %r.", paths)
