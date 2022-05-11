@@ -1,3 +1,12 @@
+THIS PACKAGE IS BEING MERGED INTO WAGTAIL ITSELF
+==============================================
+
+See the documentation at https://docs.wagtail.org/en/stable/reference/contrib/frontendcache.html.
+
+https://github.com/wagtail/wagtail/pull/8448 needs to be merged first in order for Wagtail to be using up to date Azure SDK that this package is using. You may want to hold off using the Wagtail version until that happens.
+
+This package won't be actively maintainted.
+
 wagtail-azure-cdn
 =================
 
